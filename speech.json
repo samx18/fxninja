@@ -1,0 +1,5 @@
+{
+	"greet": "Welcome to Fx Ninja, You can get the exchange rate for a currency by saying the currency code like CAD. The default base curency is USD",
+  "repormpt": "Please tell me a currency code by saying, INR or get rate for INR",
+  "bye": "Thank you for trying Fx Ninja. Have a nice day!"
+}
