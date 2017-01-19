@@ -1,5 +1,6 @@
 'use strict';
 var request = require('request');
+const speech = require('./speech.json');
 const url1 = "http://api.fixer.io/latest?base="
 const url2 = "&symbols="
 let base = 'USD'
@@ -68,7 +69,7 @@ function getExchangeRate(base,symbol,callback){
 	request.get(url1+base+url2+symbol, function(err,res,body){
 		console.log(body);
 		var info = JSON.parse(body); // convert JSON to JS Object
-		console.log(info);
+		//console.log(info); // Debug
 		console.log(info.rates[symbol]);
 		callback(info.rates[symbol])
 	});
@@ -77,7 +78,8 @@ function getExchangeRate(base,symbol,callback){
 
 function getExchangeDetails(intent,session,callback){
   const cardTitle = "Exchange Rate Details";
-  const currencySymbol = intent.slots.Currency.value;
+  let currencySymbol = intent.slots.Currency.value;
+  currencySymbol = currencySymbol.toUpperCase();
   let repromptText = '';
   let sessionAttributes = {};
   let shouldEndSession = false;
@@ -86,7 +88,7 @@ function getExchangeDetails(intent,session,callback){
   console.log(currencySymbol); //Debug
   getExchangeRate(base,currencySymbol, function(rate){
     console.log(rate); //Debug
-    speechOutput = rate;
+    speechOutput = "The exchnage rate for "+currencySymbol+" is "+rate+" USD";
     cardOutput = rate;
     shouldEndSession = true;
     callback(sessionAttributes,
