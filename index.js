@@ -90,7 +90,7 @@ function getExchangeDetails(intent,session,callback){
   if (currencyCodes.indexOf(currencySymbol) > -1){
     getExchangeRate(base,currencySymbol, function(rate){
       console.log(rate); //Debug
-      speechOutput = "The current exchange rate for 1 "+currencySymbol+" is "+rate+" USD";
+      speechOutput = "The current exchange rate for 1 "+currencySymbol+" is "+rate+" USD. Thank you for trying Fx Ninja";
       cardOutput = rate;
       shouldEndSession = true;
       callback(sessionAttributes,
