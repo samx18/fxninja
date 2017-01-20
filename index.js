@@ -4,6 +4,7 @@ const speech = require('./speech.json');
 const url1 = "http://api.fixer.io/latest?base="
 const url2 = "&symbols="
 let base = 'USD'
+const currencyCodes = ['AUD','CAD','CHF','CYP','CZK','DKK','EEK','GBP','HKD','HUF','ISK','JPY','KRW','LTL','LVL','MTL','NOK','NZD','PLN','ROL','SEK','SGD','SIT','SKK','TRL','USD','ZAR','EUR'];
 
 
 // --------------- Helpers that build all of the responses -----------------------
@@ -86,14 +87,23 @@ function getExchangeDetails(intent,session,callback){
   let speechOutput = '';
   let cardOutput = '';
   console.log(currencySymbol); //Debug
-  getExchangeRate(base,currencySymbol, function(rate){
-    console.log(rate); //Debug
-    speechOutput = "The exchnage rate for "+currencySymbol+" is "+rate+" USD";
-    cardOutput = rate;
+  if (currencyCodes.indexOf(currencySymbol) > -1){
+    getExchangeRate(base,currencySymbol, function(rate){
+      console.log(rate); //Debug
+      speechOutput = "The current exchange rate for 1 "+currencySymbol+" is "+rate+" USD";
+      cardOutput = rate;
+      shouldEndSession = true;
+      callback(sessionAttributes,
+                   buildSpeechletResponse(cardTitle, speechOutput, repromptText, shouldEndSession,cardOutput));
+    })
+  } else {
+    speechOutput = "Sorry, I do not understand that currency code";
+    cardOutput = "Unsupported symbol";
     shouldEndSession = true;
     callback(sessionAttributes,
                  buildSpeechletResponse(cardTitle, speechOutput, repromptText, shouldEndSession,cardOutput));
-  })
+  }
+
 }
 
 // --------------- Events -----------------------
