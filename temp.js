@@ -1,6 +1,8 @@
 var request = require('request');
 const url1 = "http://api.fixer.io/latest?base="
 const url2 = "&symbols="
+let u = 1;
+let base = "USD";
 
 function fixer(base,symbol,callback){
 
@@ -14,6 +16,8 @@ function fixer(base,symbol,callback){
 
 }
 
-fixer("USD","INR",function(value){
+function getFixer(base,symbol,callback){
+	fixer(base,symbol,function(value){
 	console.log(value);
-});
+	});
+}

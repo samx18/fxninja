@@ -1,7 +1,7 @@
 {
   "name": "fxninja",
   "version": "1.0.0",
-  "description": "",
+  "description": "Alexa Fx Ninja Skill",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,6 +9,19 @@
   "author": "Sampat Palani",
   "license": "ISC",
   "dependencies": {
+    "currency-codes": "^1.1.2",
     "request": "^2.79.0"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samx18/fxninja.git"
+  },
+  "keywords": [
+    "Alexa"
+  ],
+  "bugs": {
+    "url": "https://github.com/samx18/fxninja/issues"
+  },
+  "homepage": "https://github.com/samx18/fxninja#readme"
 }
