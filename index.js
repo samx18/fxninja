@@ -1,11 +1,12 @@
 'use strict';
 var request = require('request');
+var cc = require('currency-codes');
 const speech = require('./speech.json');
 const url1 = "http://api.fixer.io/latest?base="
 const url2 = "&symbols="
 let base = 'USD'
 const currencyCodes = ['AUD','CAD','CHF','CYP','CZK','DKK','EEK','GBP','HKD','HUF','ISK','JPY','KRW','LTL','LVL','MTL','NOK','NZD','PLN','ROL','SEK','INR','SGD','SIT','SKK','TRL','USD','ZAR','EUR'];
-
+var countries = cc.countries();
 
 // --------------- Helpers that build all of the responses -----------------------
 
@@ -79,7 +80,19 @@ function getExchangeRate(base,symbol,callback){
 
 function getExchangeDetails(intent,session,callback){
   const cardTitle = "Exchange Rate Details";
-  let currencySymbol = intent.slots.Currency.value;
+  let country = intent.slots.Country.value;
+  let currencySymbol ='';
+  country=country.toLowerCase();
+  if (countries.indexOf(country) > -1){
+    var ccCode = cc.country(country);
+    currencySymbol=ccCode[0].code
+  }else{
+    speechOutput = speech.unsupported+speech.bye;
+    cardOutput = speech.invalidcard+currencySymbol;
+    shouldEndSession = true;
+    callback(sessionAttributes,
+                 buildSpeechletResponse(cardTitle, speechOutput, repromptText, shouldEndSession,cardOutput));
+  }
   currencySymbol = currencySymbol.toUpperCase();
   let repromptText = '';
   let sessionAttributes = {};
