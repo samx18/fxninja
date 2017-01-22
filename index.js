@@ -82,6 +82,11 @@ function getExchangeDetails(intent,session,callback){
   const cardTitle = "Exchange Rate Details";
   let country = intent.slots.Country.value;
   let currencySymbol ='';
+  let repromptText = '';
+  let sessionAttributes = {};
+  let shouldEndSession = false;
+  let speechOutput = '';
+  let cardOutput = '';
   country=country.toLowerCase();
   if (countries.indexOf(country) > -1){
     var ccCode = cc.country(country);
@@ -94,11 +99,6 @@ function getExchangeDetails(intent,session,callback){
                  buildSpeechletResponse(cardTitle, speechOutput, repromptText, shouldEndSession,cardOutput));
   }
   currencySymbol = currencySymbol.toUpperCase();
-  let repromptText = '';
-  let sessionAttributes = {};
-  let shouldEndSession = false;
-  let speechOutput = '';
-  let cardOutput = '';
   console.log(currencySymbol); //Debug
   if (currencyCodes.indexOf(currencySymbol) > -1){
     getExchangeRate(base,currencySymbol, function(rate){
