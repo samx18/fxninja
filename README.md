@@ -9,6 +9,9 @@ A skill to get get the current exchange rate for a country. The base currency is
 * Enable this skill from your Alexa app.
 
 ## Sample Utterances
-Alexa, ask Fx Ninja to get rate for Canada
-Get exchange rate for India
-New Zealand
+* Alexa, ask Fx Ninja to get rate for Canada
+* Get exchange rate for India
+* New Zealand
+
+## Source
+The source for the exchange rates is fixer.io 
