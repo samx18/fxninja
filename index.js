@@ -5,7 +5,8 @@ const speech = require('./speech.json');
 const url1 = "http://api.fixer.io/latest?base="
 const url2 = "&symbols="
 let base = 'USD'
-const currencyCodes = ['AUD','CAD','CHF','CYP','CZK','DKK','EEK','GBP','HKD','HUF','ISK','JPY','KRW','LTL','LVL','MTL','NOK','NZD','PLN','ROL','SEK','INR','SGD','SIT','SKK','TRL','USD','ZAR','EUR'];
+const currencyCodes = ['AUD','CAD','CHF','CYP','CZK','DKK','EEK','GBP','HKD','HUF','ISK','JPY','KRW','LTL','LVL','MTL','NOK',
+  'NZD','PLN','ROL','SEK','INR','SGD','SIT','SKK','TRL','USD','ZAR','EUR'];
 var countries = cc.countries();
 
 // --------------- Helpers that build all of the responses -----------------------
@@ -72,7 +73,7 @@ function getExchangeRate(base,symbol,callback){
 		console.log(body);
 		var info = JSON.parse(body); // convert JSON to JS Object
 		//console.log(info); // Debug
-		console.log(info.rates[symbol]);
+		//console.log(info.rates[symbol]);
 		callback(info.rates[symbol])
 	});
 
