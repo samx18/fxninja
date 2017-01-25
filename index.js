@@ -88,13 +88,23 @@ function getExchangeDetails(intent,session,callback){
   let shouldEndSession = false;
   let speechOutput = '';
   let cardOutput = '';
-  country=country.toLowerCase();
-  if (countries.indexOf(country) > -1){
-    var ccCode = cc.country(country);
-    currencySymbol=ccCode[0].code
-  }else{
-    speechOutput = speech.unsupported+speech.bye;
-    cardOutput = speech.invalidcard+currencySymbol;
+  if(typeof country != 'undefined'){ // handle if intent is invoked without any value
+    country=country.toLowerCase();
+    if (countries.indexOf(country) > -1){
+      var ccCode = cc.country(country);
+      currencySymbol=ccCode[0].code
+    }else{
+      speechOutput = speech.unsupported+speech.bye;
+      cardOutput = speech.invalidcard+currencySymbol;
+      shouldEndSession = true;
+      callback(sessionAttributes,
+                   buildSpeechletResponse(cardTitle, speechOutput, repromptText, shouldEndSession,cardOutput));
+    }
+  }
+  else{
+    speechOutput = speech.repormpt;
+    cardOutput = speech.greet;
+    repromptText = speech.repormpt;
     shouldEndSession = true;
     callback(sessionAttributes,
                  buildSpeechletResponse(cardTitle, speechOutput, repromptText, shouldEndSession,cardOutput));

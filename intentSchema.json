@@ -4,9 +4,9 @@
 	      "intent": "GetExchangeIntent",
         "slots": [
           {
-	          "name": "Currency",
-	          "type": "C_CODE"
-	        }
+            "name": "Country",
+	        "type": "AMAZON.Country"
+          }
         ]
 	    },
 	    {

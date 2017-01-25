@@ -1,1 +1,3 @@
-GetExchangeIntent {Currency}
+GetExchangeIntent {Country}
+GetExchangeIntent Get rate for {Country}
+GetExchangeIntent Get exchange rate for {Country}
