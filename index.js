@@ -5,8 +5,6 @@ const speech = require('./speech.json');
 const url1 = "http://api.fixer.io/latest?base="
 const url2 = "&symbols="
 let base = 'USD'
-const currencyCodes = ['AUD','CAD','CHF','CYP','CZK','DKK','EEK','GBP','HKD','HUF','ISK','JPY','KRW','LTL','LVL','MTL','NOK',
-  'NZD','PLN','ROL','SEK','INR','SGD','SIT','SKK','TRL','USD','ZAR','EUR'];
 var countries = cc.countries();
 
 // --------------- Helpers that build all of the responses -----------------------
@@ -89,10 +87,10 @@ function getExchangeDetails(intent,session,callback){
   let speechOutput = '';
   let cardOutput = '';
   if(typeof country != 'undefined'){ // handle if intent is invoked without any value
-    country=country.toLowerCase();
-    if (countries.indexOf(country) > -1){
-      var ccCode = cc.country(country);
-      currencySymbol=ccCode[0].code
+    country=country.toLowerCase(); // convert country to lower case
+    if (countries.indexOf(country) > -1){ // check if the country is part of the list of countries in the 'currency-codes' npm
+      var ccCode = cc.country(country); // get list object for the specified ountry
+      currencySymbol=ccCode[0].code // get currency symbol from the list
     }else{
       speechOutput = speech.unsupported+speech.bye;
       cardOutput = speech.invalidcard+currencySymbol;
