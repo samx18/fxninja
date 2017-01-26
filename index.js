@@ -3,6 +3,8 @@ var request = require('request');
 var cc = require('currency-codes');
 const speech = require('./speech.json');
 const url1 = "http://api.fixer.io/latest?base="
+const currencyCodes = ['AUD','CAD','CHF','CYP','CZK','DKK','EEK','GBP','HKD','HUF','ISK','JPY','KRW','LTL','LVL','MTL','NOK',
+  'NZD','PLN','ROL','SEK','INR','SGD','SIT','SKK','TRL','USD','ZAR','EUR'];
 const url2 = "&symbols="
 let base = 'USD'
 var countries = cc.countries();
