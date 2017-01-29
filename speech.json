@@ -2,7 +2,7 @@
 	"greet": "Welcome to Forex Ninja, You can get the USD exchange rate for a currency by saying the country name like Canada.",
   "repormpt": "Please tell me a country code by saying, Canada or get rate for Canada",
   "bye": "Thank you for trying Forex Ninja. Have a nice day!",
-	"unsupported": "Sorry, I currently do not support that code or country.",
+	"unsupported": "Sorry, I currently do not support that code or country. ",
 	"validcard": "Exchange details for: ",
 	"invalidcard": "Code or Country not supported: "
 }
