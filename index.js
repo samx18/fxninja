@@ -95,7 +95,7 @@ function getExchangeDetails(intent,session,callback){
       currencySymbol=ccCode[0].code // get currency symbol from the list
     }else{
       speechOutput = speech.unsupported+speech.bye;
-      cardOutput = speech.invalidcard+currencySymbol;
+      cardOutput = speech.invalidcard;
       shouldEndSession = true;
       callback(sessionAttributes,
                    buildSpeechletResponse(cardTitle, speechOutput, repromptText, shouldEndSession,cardOutput));
@@ -115,14 +115,14 @@ function getExchangeDetails(intent,session,callback){
     getExchangeRate(base,currencySymbol, function(rate){
       console.log(rate); //Debug
       speechOutput = "The current exchange rate for 1 "+currencySymbol+" is "+rate+" USD. Thank you for trying Fx Ninja.";
-      cardOutput = speech.validcard+currencySymbol;
+      cardOutput = "The current exchange rate for 1 "+currencySymbol+" is "+rate+" USD."
       shouldEndSession = true;
       callback(sessionAttributes,
                     buildSpeechletResponse(cardTitle, speechOutput, repromptText, shouldEndSession,cardOutput));
     })
   } else {
     speechOutput = speech.unsupported+speech.bye;
-    cardOutput = speech.invalidcard+currencySymbol;
+    cardOutput = speech.invalidcard;
      shouldEndSession = true;
      callback(sessionAttributes,
                   buildSpeechletResponse(cardTitle, speechOutput, repromptText, shouldEndSession,cardOutput));

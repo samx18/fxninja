@@ -4,5 +4,5 @@
   "bye": "Thank you for trying Forex Ninja. Have a nice day!",
 	"unsupported": "Sorry, I currently do not support that code or country. ",
 	"validcard": "Exchange details for: ",
-	"invalidcard": "Code or Country not supported: "
+	"invalidcard": "The Country or Code is currently not supported."
 }
